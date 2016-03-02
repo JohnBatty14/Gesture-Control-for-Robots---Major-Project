@@ -6,21 +6,32 @@ cap = cv2.VideoCapture(0)
 if cap.isOpened() == False:
     cap.open()
     
+def findBlobs(frame):
+    # finds the blobs in the frame
+    detector = cv2.SimpleBlobDetector()
+    # sets up the detector with simple blob detection
+    keypoints = detector.detect(frame)
+    # finds the blobs
+    blobsInFrame = cv2.drawKeypoints(im, keypoints, np.array([]), (255,0,0), cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
+    #draws a blue circle around the detected blobs
+    return blobsInFrame
+
 while(True):
-    # Capture frame-by-frame
     ret, frame = cap.read()
+    # Capture the video from the camera frame-by-frame
 
-    # Our operations on the frame come here
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
+    # Stuff that we do to the frame goes here
+    foundBlobs = findBlobs(frame)
+    
+    cv2.imshow('keypoints', foundBlobs)
     # Display the resulting frame
-    cv2.imshow('frame',gray)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
 # When everything done, release the capture
 cap.release()
 cv2.destroyAllWindows()
+
 
 
 
@@ -31,9 +42,10 @@ cv2.destroyAllWindows()
 #    
 #    - draw a circle around them and follow them with the circle
 #        to draw a circle:
-#            img = cv2.circle(img,(447,63), 63, (0,0,255), -1)
+#            img = cv2.circle(img,(x coord, y coord), radius,
+#               (colour as tuple in BGR (0,0,255)), thickness)
 #            
 #    - if there are more than one white blob or one black blobn throw an error
-#        'Too many blobs!'
+#        'Too many blobs!' - might be harder that I thought.....
 
         
