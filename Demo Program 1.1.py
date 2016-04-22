@@ -9,7 +9,7 @@ if cap.isOpened() == False:
 def findWhiteBlobs(frame):
     params = cv2.SimpleBlobDetector_Params()
     params.filterByColor = True
-    params.filterByColor = 255
+    params.blobColor = 255
     detector = cv2.SimpleBlobDetector_create(params)
     keypoints = detector.detect(frame)
     blobsInFrame = cv2.drawKeypoints(frame, keypoints, np.array([]), (20,0,0), cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
