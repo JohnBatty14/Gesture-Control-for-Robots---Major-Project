@@ -17,7 +17,7 @@ def findWhiteBlobs(frame):
     params.filterByCircularity = True
     params.minCircularity = 0.8
     params.filterByArea = True
-    #params.minArea = 900
+    params.minArea = 900
     detector = cv2.SimpleBlobDetector_create(params)
     keypoints = detector.detect(frame)
     return keypoints
