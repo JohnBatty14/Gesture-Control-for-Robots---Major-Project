@@ -5,6 +5,7 @@ and use them to send commands to the robot and therefore allow the human to cont
 
 
 Important notes for doing stuff with terminals in the delph:
+
 open terminal in 1 Major Project
 	cd 1 then tab to get 1 Major Project
 
